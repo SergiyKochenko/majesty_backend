@@ -31,7 +31,9 @@ SECRET_KEY = 'django-insecure-k4l8=0a9$xw6ns0^6c7e9+0o99=!2s5^9e_qjg1#af%29+5u!r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["marketplace-majesty-production.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ['https://marketplace-majesty-production.up.railway.app']
+SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 
 # Application definition
