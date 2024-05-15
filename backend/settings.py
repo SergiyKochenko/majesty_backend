@@ -14,9 +14,10 @@ from pathlib import Path
 from datetime import timedelta
 from environs import Env
 import os
-
 env = Env()
 env.read_env()
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,8 +32,8 @@ SECRET_KEY = 'django-insecure-k4l8=0a9$xw6ns0^6c7e9+0o99=!2s5^9e_qjg1#af%29+5u!r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["marketplace-majesty-production.up.railway.app"]
-CSRF_TRUSTED_ORIGINS = ['https://marketplace-majesty-production.up.railway.app']
+ALLOWED_HOSTS = ["marketplace-majesty-production.up.railway.app", "127.0.0.1"]
+CSRF_TRUSTED_ORIGINS = ['https://marketplace-majesty-production.up.railway.app', 'http://127.0.0.1']
 SECURE_CROSS_ORIGIN_OPENER_POLICY = 'same-origin-allow-popups'
 
 
@@ -105,6 +106,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
